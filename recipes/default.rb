@@ -113,5 +113,5 @@ end
 service "php-fpm" do
   service_name php_fpm_service_name
   supports :start => true, :stop => true, :restart => true, :reload => true
-  action [ :enable, :restart ]
+  action [ :enable, :start ]
 end

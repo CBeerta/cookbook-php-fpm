@@ -48,5 +48,6 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
     :max_requests => node['php-fpm']['pool'][pool_name]['max_requests'],
     :params => params
     )
+    notifies :reload, "service[php-fpm]", :delayed
   end
 end
