@@ -3,21 +3,21 @@ if node.platform_family == "rhel"
   group = "apache"
   conf_dir = "/etc/php-fpm.d"
   conf_file = "/etc/php-fpm.conf"
-  error_log = "/var/log/php-fpm/error.log"
+  log_dir = "/var/log/php-fpm"
   pid = "/var/run/php-fpm/php-fpm.pid"
 else
   user = "www-data"
   group = "www-data"
   conf_dir = "/etc/php5/fpm"
   conf_file = "/etc/php5/fpm/php-fpm.conf"
-  error_log = "/var/log/php5-fpm.log"
+  log_dir = "/var/log/php-fpm"
   pid ="/var/run/php5-fpm.pid"
 end
 
 default['php-fpm']['conf_dir'] = conf_dir
 default['php-fpm']['conf_file'] = conf_file
 default['php-fpm']['pid'] = pid
-default['php-fpm']['error_log'] =  error_log
+default['php-fpm']['log_dir'] =  log_dir
 default['php-fpm']['log_level'] = "notice"
 
 default['php-fpm']['pools'] = ["www","testpool"]

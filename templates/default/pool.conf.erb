@@ -151,12 +151,12 @@ pm.max_requests = <%= @max_requests %>
 ; dumped to the 'slowlog' file. A value of '0s' means 'off'.
 ; Available units: s(econds)(default), m(inutes), h(ours), or d(ays)
 ; Default Value: 0
-;request_slowlog_timeout = 0
+request_slowlog_timeout = 5s
 
 ; The log file for slow requests
 ; Default Value: not set
 ; Note: slowlog is mandatory if request_slowlog_timeout is set
-;slowlog = /var/log/php-fpm/www-slow.log
+slowlog = <%= @pool_log_dir %>/php-slow.log
 
 ; Set open file descriptor rlimit.
 ; Default Value: system defined value
@@ -219,8 +219,8 @@ pm.max_requests = <%= @max_requests %>
 ;                specified at startup with the -d argument
 ;php_admin_value[sendmail_path] = /usr/sbin/sendmail -t -i -f www@my.domain.com
 ;php_flag[display_errors] = off
-;php_admin_value[error_log] = /var/log/php-fpm/www-error.log
-;php_admin_flag[log_errors] = on
+php_admin_value[error_log] = <%= @pool_log_dir %>/php-error.log
+php_admin_flag[log_errors] = on
 ;php_admin_value[memory_limit] = 128M
 
 ; Set session path to a directory owned by process user

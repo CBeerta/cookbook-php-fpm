@@ -97,6 +97,13 @@ package php_fpm_service_name do
   action :upgrade
 end
 
+directory node['php-fpm']['log_dir'] do
+  owner "root"
+  group "root"
+  mode 00644
+  action :create
+end
+
 template node['php-fpm']['conf_file'] do
   source "php-fpm.conf.erb"
   mode 00644

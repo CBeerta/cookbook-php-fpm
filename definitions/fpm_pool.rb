@@ -23,10 +23,16 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
 
   include_recipe "php-fpm"
 
-  conf_file = "#{node['php-fpm']['conf_dir']}/pools/#{pool_name}.conf"
-  # /etc/php5/fpm/pool.d/www.conf
+  conf_file = "#{node['php-fpm']['conf_dir']}/pool.d/#{pool_name}.conf"
+  pool_log_dir = "#{node['php-fpm']['log_dir']}/#{pool_name}"
+  
+  directory pool_log_dir do
+    owner node['php-fpm']['pool'][pool_name]['user']
+    group node['php-fpm']['pool'][pool_name]['group']
+    mode 00755
+  end
+
   template conf_file do
-    only_if "test -d #{node['php-fpm']['conf_dir']}/pools || mkdir -p #{node['php-fpm']['conf_dir']}/pools"
     source params[:template]
     owner "root"
     group "root"
@@ -46,6 +52,7 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
     :min_spare_servers => node['php-fpm']['pool'][pool_name]['min_spare_servers'],
     :max_spare_servers => node['php-fpm']['pool'][pool_name]['max_spare_servers'],
     :max_requests => node['php-fpm']['pool'][pool_name]['max_requests'],
+    :pool_log_dir => pool_log_dir,
     :params => params
     )
     notifies :reload, "service[php-fpm]", :delayed

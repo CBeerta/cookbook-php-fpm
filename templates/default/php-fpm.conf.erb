@@ -1,3 +1,7 @@
+;
+; Deployed by Chef for <%= node['fqdn'] %>
+;
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; FPM Configuration ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -8,7 +12,7 @@
 ; Include one or more files. If glob(3) exists, it is used to include a bunch of
 ; files from a glob(3) pattern. This directive can be used everywhere in the
 ; file.
-include=<%= "#{node['php-fpm']['conf_dir']}/pools/*.conf" %>
+include=<%= "#{node['php-fpm']['conf_dir']}/pool.d/*.conf" %>
 
 ;;;;;;;;;;;;;;;;;;
 ; Global Options ;
@@ -21,7 +25,7 @@ pid = <%= node['php-fpm']['pid'] %>
 
 ; Error log file
 ; Default Value: /var/log/php-fpm.log
-error_log = <%= node['php-fpm']['error_log'] %>
+error_log = <%= node['php-fpm']['log_dir'] %>/error.log
 
 ; Log level
 ; Possible Values: alert, error, warning, notice, debug
