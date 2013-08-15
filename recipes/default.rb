@@ -111,6 +111,13 @@ template node['php-fpm']['conf_file'] do
   group "root"
 end
 
+template "/etc/logrotate.d/php-fpm" do
+  source "logrotate.conf.erb"
+  mode 00644
+  owner "root"
+  group "root"
+end
+
 node['php-fpm']['pools'].each do |pool|
   fpm_pool pool do
     php_fpm_service_name php_fpm_service_name

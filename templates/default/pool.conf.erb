@@ -23,13 +23,12 @@ pm.process_idle_timeout = <%= @process_idle_timeout %>
 pm.status_path = /php-fpm-status
 pm.max_requests = <%= @max_requests %>
 
-
 catch_workers_output = yes
 request_slowlog_timeout = 5s
 slowlog = <%= @pool_log_dir %>/php-slow.log
 
 php_admin_value[error_log] = <%= @pool_log_dir %>/php-error.log
-php_admin_flag[log_errors] = on
+php_admin_flag[log_errors] = off
 php_admin_value[cgi.fix_pathinfo] = 1
 
 

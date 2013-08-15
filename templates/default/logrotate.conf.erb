@@ -1,0 +1,10 @@
+<%= node['php-fpm']['error_log'] %> <%= node['php-fpm']['pool_log_dir'] %>/*/php-*.log {
+        weekly
+        missingok
+        rotate 7
+        compress
+        nocreate
+        copytruncate
+        delaycompress
+}
+
