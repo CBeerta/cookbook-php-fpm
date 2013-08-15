@@ -24,7 +24,7 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
   include_recipe "php-fpm"
 
   conf_file = "#{node['php-fpm']['conf_dir']}/pool.d/#{pool_name}.conf"
-  pool_log_dir = "#{node['php-fpm']['log_dir']}/#{pool_name}"
+  pool_log_dir = "#{node['php-fpm']['pool_log_dir']}/#{pool_name}"
   
   directory pool_log_dir do
     owner node['php-fpm']['pool'][pool_name]['user']
@@ -52,6 +52,7 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
     :min_spare_servers => node['php-fpm']['pool'][pool_name]['min_spare_servers'],
     :max_spare_servers => node['php-fpm']['pool'][pool_name]['max_spare_servers'],
     :max_requests => node['php-fpm']['pool'][pool_name]['max_requests'],
+    :process_idle_timeout => node['php-fpm']['pool'][pool_name]['max_requests'],
     :pool_log_dir => pool_log_dir,
     :params => params
     )

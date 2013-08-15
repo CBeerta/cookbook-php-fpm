@@ -97,7 +97,7 @@ package php_fpm_service_name do
   action :upgrade
 end
 
-directory node['php-fpm']['log_dir'] do
+directory node['php-fpm']['pool_log_dir'] do
   owner "root"
   group "root"
   mode 00644
@@ -122,3 +122,4 @@ service "php-fpm" do
   supports :start => true, :stop => true, :restart => true, :reload => true
   action [ :enable, :start ]
 end
+

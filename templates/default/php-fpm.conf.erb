@@ -2,11 +2,13 @@
 ; Deployed by Chef for <%= node['fqdn'] %>
 ;
 
-include=<%= "#{node['php-fpm']['conf_dir']}/pool.d/*.conf" %>
 
 [global]
 pid = <%= node['php-fpm']['pid'] %>
-error_log = <%= node['php-fpm']['log_dir'] %>/error.log
+error_log = <%= node['php-fpm']['error_log'] %>
 log_level = <%= node['php-fpm']['log_level'] %>
-daemonize = yes
+;daemonize = yes
+
+
+include=<%= "#{node['php-fpm']['conf_dir']}/pool.d/*.conf" %>
 
