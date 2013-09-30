@@ -1,4 +1,5 @@
-if node.platform_family == "rhel"
+case platform_family
+when "rhel"
   user = "apache"
   group = "apache"
   conf_dir = "/etc/php-fpm.d"
@@ -9,7 +10,7 @@ if node.platform_family == "rhel"
 else
   user = "www-data"
   group = "www-data"
-  conf_dir = "/etc/php5/fpm"
+  conf_dir = "/etc/php5/fpm/pool.d"
   conf_file = "/etc/php5/fpm/php-fpm.conf"
   error_log = "/var/log/php5-fpm.log"
   pool_log_dir = "/var/log/php-fpm"

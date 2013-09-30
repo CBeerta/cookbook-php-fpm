@@ -10,5 +10,5 @@ log_level = <%= node['php-fpm']['log_level'] %>
 ;daemonize = yes
 
 
-include=<%= "#{node['php-fpm']['conf_dir']}/pool.d/*.conf" %>
+include=<%= "#{node['php-fpm']['conf_dir']}/*.conf" %>
 

@@ -23,7 +23,7 @@ define :fpm_pool, :template => "pool.conf.erb", :enable => true do
 
   include_recipe "php-fpm"
 
-  conf_file = "#{node['php-fpm']['conf_dir']}/pool.d/#{pool_name}.conf"
+  conf_file = "#{node['php-fpm']['conf_dir']}/#{pool_name}.conf"
   pool_log_dir = "#{node['php-fpm']['pool_log_dir']}/#{pool_name}"
   
   directory pool_log_dir do
