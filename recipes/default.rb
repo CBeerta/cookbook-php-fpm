@@ -94,7 +94,7 @@ else
 end
 
 package php_fpm_service_name do
-  action :upgrade
+  action :install
 end
 
 directory node['php-fpm']['pool_log_dir'] do
